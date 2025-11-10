@@ -76,7 +76,7 @@ class AuthController extends Controller
             'role' => 'staff',
         ]);
 
-        return redirect()->route('login')->with('success', 'Cashier account created successfully! You can now log in.');
+        return redirect()->route('login')->with('success', 'Staff account created successfully! You can now log in.');
     }
 
     // Logout

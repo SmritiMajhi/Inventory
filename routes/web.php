@@ -39,6 +39,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
+// Route::middleware(['auth', 'role:admin'])->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 
 
@@ -53,8 +55,16 @@ Route::resource('settings', SettingController::class);
 });
 
 // ------------------- Cashier Routes -------------------
-Route::prefix('cashier')->middleware(['auth', 'role:staff'])->group(function () {
-    Route::get('dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+// Route::prefix('staff')->middleware(['auth', 'role:staff'])->group(function () {
+//     Route::get('dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+
+// Route::middleware(['auth', 'role:staff'])->group(function () {
+    Route::middleware('auth')->group(function () {
+
+    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+
+
+
     // Optionally, cashier can have access to sales only:
     Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
 });
