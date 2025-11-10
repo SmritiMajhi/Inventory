@@ -1,4 +1,4 @@
-
+{{-- 
 <nav class="navbar navbar-expand-lg mb-4">
     <div class="container">
         <a class="navbar-brand fw-bold" href="{{ url('/') }}">Inventory System</a>
@@ -16,5 +16,24 @@
 <div class="container">
     @yield('content')
 </div>
+
+ --}}
+
+
+
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('welcome') }}">POS System</a>
+            <div>
+                @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light">Logout</button>
+                    </form>
+                @endauth
+            </div>
+        </div>
+    </nav>
 
 
