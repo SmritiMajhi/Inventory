@@ -1,11 +1,12 @@
-@import 'tailwindcss';
+@import "bootstrap/dist/css/bootstrap.min.css";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+@import "./components/navbar.css";
+@import "./components/footer.css";
+@import "./components/categories.css";
+@import "./components/customers.css";
+@import "./components/products.css";
+@import "./components/purchases.css";
+@import "./components/sales-items.css";
+@import "./components/sales.css";
+@import "./components/settings.css";
+@import "./components/stocks.css";
