@@ -6,10 +6,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SupplierController;
+
+use App\Http\Controllers\Admin\CategoryController;
+
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleItemController;
@@ -36,11 +38,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 //     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-// Route::middleware(['auth', 'role:admin'])->group(function () {
+// Route::middleware('auth')->group(function () {
 //     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+Route::prefix('admin')
+    ->middleware('auth') // optionally add role check
+    ->name('admin.')      // THIS is what prefixes route names with admin.
+    ->group(function () {
+
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
 
 

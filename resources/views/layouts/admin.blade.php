@@ -96,13 +96,13 @@
     {{-- <h4 class="text-center mb-4">🧾 POS Admin</h4> --}}
     <ul class="nav nav-pills flex-column mb-auto">
       <li><a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="bi bi-speedometer2 me-2"></i> <span>Dashboard</span></a></li>
-      <li><a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}"><i class="bi bi-tags me-2"></i> <span>Categories</span></a></li>
-      <li><a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}"><i class="bi bi-box-seam me-2"></i> <span>Products</span></a></li>
-      <li><a href="{{ route('suppliers.index') }}" class="nav-link {{ request()->routeIs('suppliers.*') ? 'active' : '' }}"><i class="bi bi-truck me-2"></i> <span>Suppliers</span></a></li>
-      <li><a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}"><i class="bi bi-people me-2"></i> <span>Customers</span></a></li>
-      <li><a href="{{ route('purchases.index') }}" class="nav-link {{ request()->routeIs('purchases.*') ? 'active' : '' }}"><i class="bi bi-cart-check me-2"></i> <span>Purchases</span></a></li>
-      <li><a href="{{ route('sales.index') }}" class="nav-link {{ request()->routeIs('sales.*') ? 'active' : '' }}"><i class="bi bi-receipt-cutoff me-2"></i> <span>Sales</span></a></li>
-      <li><a href="{{ route('settings.index') }}" class="nav-link {{ request()->routeIs('settings.*') ? 'active' : '' }}"><i class="bi bi-gear me-2"></i> <span>Settings</span></a></li>
+      <li><a href="{{ route('admin.categories.index') }}" class="nav-link {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}"><i class="bi bi-tags me-2"></i> <span>Categories</span></a></li>
+      <li><a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}"><i class="bi bi-box-seam me-2"></i> <span>Products</span></a></li>
+      <li><a href="{{ route('admin.suppliers.index') }}" class="nav-link {{ request()->routeIs('admin.suppliers.*') ? 'active' : '' }}"><i class="bi bi-truck me-2"></i> <span>Suppliers</span></a></li>
+      <li><a href="{{ route('admin.customers.index') }}" class="nav-link {{ request()->routeIs('admin.admin.customers.*') ? 'active' : '' }}"><i class="bi bi-people me-2"></i> <span>Customers</span></a></li>
+      <li><a href="{{ route('admin.purchases.index') }}" class="nav-link {{ request()->routeIs('admin.purchases.*') ? 'active' : '' }}"><i class="bi bi-cart-check me-2"></i> <span>Purchases</span></a></li>
+      <li><a href="{{ route('admin.sales.index') }}" class="nav-link {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}"><i class="bi bi-receipt-cutoff me-2"></i> <span>Sales</span></a></li>
+      <li><a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><i class="bi bi-gear me-2"></i> <span>Settings</span></a></li>
     </ul>
     <hr>
     <a href="{{ route('logout') }}" class="btn btn-danger w-100"><i class="bi bi-box-arrow-right me-1"></i> Logout</a>

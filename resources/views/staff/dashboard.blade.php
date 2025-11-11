@@ -98,6 +98,8 @@
       <i class="bi bi-shop fs-3 me-2"></i>
       <span class="fs-5 fw-semibold">POS System</span>
     </div>
+
+   
     <nav class="nav flex-column mt-3">
       <a href="#" class="nav-link active"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
       <a href="#" class="nav-link"><i class="bi bi-cart4"></i> <span>Sales</span></a>
