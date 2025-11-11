@@ -2,22 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    protected $fillable = ['customer_id', 'total_amount', 'sale_date'];
+    use HasFactory;
 
-    // Sale belongs to one Customer
+    protected $fillable = [
+        'customer_id',
+        'total_amount',
+        'sale_date',
+    ];
+
+    // Cast sale_date to a Carbon instance
+    protected $casts = [
+        'sale_date' => 'datetime',
+    ];
+
+    // Relationship with Customer
     public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
-
-    // Sale has many SaleItems
-    public function saleItems()
-    {
-        return $this->hasMany(SaleItem::class);
-    }
 }
-
