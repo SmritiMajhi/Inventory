@@ -58,9 +58,22 @@ class SalesController extends Controller
         return redirect()->route('staff.sales.index')->with('success', 'Sale updated successfully.');
     }
 
-    public function destroy(Sale $sale)
-    {
-        $sale->delete();
-        return redirect()->route('staff.sales.index')->with('success', 'Sale deleted successfully.');
-    }
+   public function destroy($id)
+{
+    $sale = Sale::findOrFail($id);
+    $sale->delete();
+
+    return redirect()->route('staff.sales.index')->with('success', 'Sale deleted successfully!');
+}
+
+// Generate invoice for a sale
+public function invoice(Sale $sale)
+{
+    // Load sale with customer and products
+    $sale->load('customer', 'items.product');
+
+    // Return invoice view
+    return view('staff.sales.invoice', compact('sale'));
+}
+
 }

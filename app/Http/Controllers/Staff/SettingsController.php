@@ -22,13 +22,26 @@ class SettingsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'key' => 'required|string|unique:settings,key',
-            'value' => 'required|string',
+            'company_name' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string',
         ]);
 
-        Setting::create($request->all());
+        $data = $request->all();
 
-        return redirect()->route('staff.settings.index')->with('success', 'Setting added.');
+        // Handle logo upload
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/settings'), $filename);
+            $data['logo'] = 'uploads/settings/' . $filename;
+        }
+
+        Setting::create($data);
+
+        return redirect()->route('staff.settings.index')->with('success', 'Setting added successfully.');
     }
 
     public function show(Setting $setting)
@@ -44,18 +57,30 @@ class SettingsController extends Controller
     public function update(Request $request, Setting $setting)
     {
         $request->validate([
-            'key' => 'required|string|unique:settings,key,' . $setting->id,
-            'value' => 'required|string',
+            'company_name' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string',
         ]);
 
-        $setting->update($request->all());
+        $data = $request->all();
 
-        return redirect()->route('staff.settings.index')->with('success', 'Setting updated.');
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/settings'), $filename);
+            $data['logo'] = 'uploads/settings/' . $filename;
+        }
+
+        $setting->update($data);
+
+        return redirect()->route('staff.settings.index')->with('success', 'Setting updated successfully.');
     }
 
     public function destroy(Setting $setting)
     {
         $setting->delete();
-        return redirect()->route('staff.settings.index')->with('success', 'Setting deleted.');
+        return redirect()->route('staff.settings.index')->with('success', 'Setting deleted successfully.');
     }
 }

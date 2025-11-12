@@ -11,9 +11,9 @@
     <a href="{{route('staff.dashboard')}}" class="nav-link"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
     <a href="{{route('staff.sales.index')}}" class="nav-link"><i class="bi bi-cart4"></i> <span>Sales</span></a>
     <a href="{{route('staff.products.index')}}" class="nav-link"><i class="bi bi-box-seam"></i> <span>Products</span></a>
-    <a href="{{route('staff.invoicescategory.index')}}" class="nav-link"><i class="bi bi-receipt-cutoff"></i> <span>Invoices</span></a>
+    <a href="{{ route('staff.salesitems.index') }}" class="nav-link"><i class="bi bi-receipt"></i><span>Sales Items</span></a>
     <a href="{{route('staff.customers.index')}}" class="nav-link"><i class="bi bi-people"></i> <span>Customers</span></a>
-    <a href="#" class="nav-link"><i class="bi bi-gear"></i> <span>Settings</span></a>
+    <a href="{{route('staff.settings.index')}}" class="nav-link"><i class="bi bi-gear"></i> <span>Settings</span></a>
     <a href="{{ route('logout') }}" class="nav-link text-danger"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
   </nav>
 </div>

@@ -91,4 +91,6 @@ Route::prefix('staff')->name('staff.')->group(function () {
     Route::resource('products', ProductsController::class);
     Route::resource('settings', SettingsController::class);
     Route::resource('invoicescategory', InvoiceCategoryController::class);
+    Route::get('sales/{sale}/invoice', [SalesController::class, 'invoice'])->name('sales.invoice');
+    Route::resource('salesitems', SalesItemController::class);
 });

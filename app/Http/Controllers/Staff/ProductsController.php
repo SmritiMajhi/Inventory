@@ -16,25 +16,33 @@ class ProductsController extends Controller
         return view('staff.products.index', compact('products'));
     }
 
-    public function create()
+   public function create()
 {
-    $categories = Category::all();  // Admin categories
-    $suppliers = Supplier::all();   // Admin suppliers
+    // $categories = Category::where('is_active', true)->orderBy('name')->get();
+    // $suppliers = Supplier::where('is_active', true)->orderBy('name')->get();
+
+    $categories = Category::orderBy('name')->get();
+$suppliers = Supplier::orderBy('name')->get();
+
+
     return view('staff.products.create', compact('categories', 'suppliers'));
 }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'category_id' => 'required|exists:categories,id',
+        'supplier_id' => 'required|exists:suppliers,id',
+        'quantity' => 'required|integer|min:0',
+        'buy_price' => 'required|numeric|min:0',
+        'sell_price' => 'required|numeric|min:0',
+    ]);
 
-        Product::create($request->all());
+    Product::create($request->all());
 
-        return redirect()->route('staff.products.index')->with('success', 'Product created successfully.');
-    }
+    return redirect()->route('staff.products.index')->with('success', 'Product created successfully.');
+}
 
     public function show(Product $product)
     {
@@ -49,17 +57,20 @@ class ProductsController extends Controller
 }
 
     public function update(Request $request, Product $product)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'category_id' => 'required|exists:categories,id',
+        'supplier_id' => 'required|exists:suppliers,id',
+        'quantity' => 'required|integer|min:0',
+        'buy_price' => 'required|numeric|min:0',
+        'sell_price' => 'required|numeric|min:0',
+    ]);
 
-        $product->update($request->all());
+    $product->update($request->all());
 
-        return redirect()->route('staff.products.index')->with('success', 'Product updated successfully.');
-    }
+    return redirect()->route('staff.products.index')->with('success', 'Product updated successfully.');
+}
 
     public function destroy(Product $product)
     {
