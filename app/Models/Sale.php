@@ -8,6 +8,12 @@ class Sale extends Model
 {
     protected $fillable = ['customer_id', 'total_amount', 'sale_date'];
 
+    // Cast sale_date to a Carbon instance so ->format() works
+    protected $casts = [
+        'sale_date' => 'date', // automatically converted to Carbon
+        'total_amount' => 'decimal:2',
+    ];
+
     // Sale belongs to one Customer
     public function customer()
     {
@@ -15,7 +21,13 @@ class Sale extends Model
     }
 
     // Sale has many SaleItems
-    public function saleItems()
+    // public function saleItems()
+    // {
+    //     return $this->hasMany(SaleItem::class);
+    // }
+
+    // Relationship: Sale has many items
+    public function items()
     {
         return $this->hasMany(SaleItem::class);
     }

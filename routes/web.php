@@ -10,11 +10,12 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Admin\CategoryController;
 
 use App\Http\Controllers\Admin\SupplierController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\SaleController;
-use App\Http\Controllers\SaleItemController;
+use App\Http\Controllers\Admin\PurchaseController;
+use App\Http\Controllers\Admin\SaleController;
+use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\SaleItemController;
 use App\Http\Controllers\SettingController;
 
 // Route::get('/', function () {
@@ -48,6 +49,8 @@ Route::prefix('admin')
 
         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
+// Invoice view for a sale
+Route::get('/sales/{sale}/invoice', [SaleController::class, 'invoice'])->name('sales.invoice');
 
 
 Route::resource('categories', CategoryController::class);
@@ -57,6 +60,8 @@ Route::resource('products', ProductController::class);
 Route::resource('purchases', PurchaseController::class);
 Route::resource('sales', SaleController::class);
 Route::resource('sale-items', SaleItemController::class);
+    Route::resource('stocks', StockController::class);
+
 Route::resource('settings', SettingController::class);
 });
 
