@@ -14,10 +14,10 @@
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">Categories</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('suppliers.index') }}">Suppliers</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('customers.index') }}">Customers</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('products.index') }}">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Suppliers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Customers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
       </ul>
 
       <!-- Right side: Login & Register -->

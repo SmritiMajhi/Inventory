@@ -14,20 +14,20 @@
             <div class="mb-3">
                 <label class="form-label">Category</label>
                 <select name="category_id" class="form-select" required>
-                    <option value="">Select Category</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
+    <option value="">Select Category</option>
+    @foreach($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+    @endforeach
+</select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Supplier</label>
                 <select name="supplier_id" class="form-select" required>
-                    <option value="">Select Supplier</option>
-                    @foreach($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                    @endforeach
-                </select>
+    <option value="">Select Supplier</option>
+    @foreach($suppliers as $supplier)
+        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+    @endforeach
+</select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Quantity</label>
