@@ -16,9 +16,9 @@ class Sale extends Model
     ];
 
     // Cast sale_date to a Carbon instance
-    protected $casts = [
-        'sale_date' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'sale_date' => 'datetime',
+    // ];
 
     // Relationship with Customer
     public function customer()
