@@ -17,3 +17,46 @@ body {
             text-align: center;
             margin-top: 30px;
         }
+        /* body {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .header, .footer {
+            padding: 15px 50px;
+            color: #fff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .header .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            background-color: rgba(0,0,0,0.3);
+        } */

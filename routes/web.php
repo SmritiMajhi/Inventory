@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Staff\SalesController;
+use App\Http\Controllers\Staff\CustomersController;
+use App\Http\Controllers\Staff\ProductsController;
+use App\Http\Controllers\Staff\SettingsController;
+use App\Http\Controllers\Staff\InvoiceCategoryController;
 
 
 use App\Http\Controllers\Admin\CategoryController;
@@ -77,5 +82,13 @@ Route::resource('settings', SettingController::class);
 
 
     // Optionally, cashier can have access to sales only:
-    Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
+    // Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
+});
+Route::prefix('staff')->name('staff.')->group(function () {
+    Route::resource('staff', StaffController::class);
+    Route::resource('sales', SalesController::class);
+    Route::resource('customers', CustomersController::class);
+    Route::resource('products', ProductsController::class);
+    Route::resource('settings', SettingsController::class);
+    Route::resource('invoicescategory', InvoiceCategoryController::class);
 });

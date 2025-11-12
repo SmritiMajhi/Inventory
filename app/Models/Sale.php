@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
@@ -14,7 +15,12 @@ class Sale extends Model
         'total_amount' => 'decimal:2',
     ];
 
-    // Sale belongs to one Customer
+    // Cast sale_date to a Carbon instance
+    protected $casts = [
+        'sale_date' => 'datetime',
+    ];
+
+    // Relationship with Customer
     public function customer()
     {
         return $this->belongsTo(Customer::class);
