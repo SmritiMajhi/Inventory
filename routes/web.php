@@ -8,9 +8,9 @@ use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Staff\SalesController;
 use App\Http\Controllers\Staff\CustomersController;
 use App\Http\Controllers\Staff\ProductsController;
-use App\Http\Controllers\Staff\SettingsController;
-use App\Http\Controllers\Staff\InvoiceCategoryController;
-
+use App\Http\Controllers\Staff\SalesItemController;
+use App\Http\Controllers\Staff\DashboardController;
+use App\Http\Controllers\Staff\SettingController as StaffSettingController;
 
 use App\Http\Controllers\Admin\CategoryController;
 
@@ -70,27 +70,23 @@ Route::resource('sale-items', SaleItemController::class);
 Route::resource('settings', SettingController::class);
 });
 
-// ------------------- Cashier Routes -------------------
-// Route::prefix('staff')->middleware(['auth', 'role:staff'])->group(function () {
-//     Route::get('dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-
-// Route::middleware(['auth', 'role:staff'])->group(function () {
-    Route::middleware('auth')->group(function () {
-
-    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-
-
-
-    // Optionally, cashier can have access to sales only:
-    // Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
-});
+// Staff routes (session-based login)
 Route::prefix('staff')->name('staff.')->group(function () {
-    Route::resource('staff', StaffController::class);
-    Route::resource('sales', SalesController::class);
-    Route::resource('customers', CustomersController::class);
+
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [StaffController::class, 'dashboard'])->name('dashboard');
+
+
+    // Staff settings (use the Staff controller alias)
+    Route::get('settings/edit', [StaffSettingController::class, 'edit'])->name('settings.edit');
+    // Accept both PUT and POST for compatibility with different form submit setups
+    Route::match(['PUT', 'POST'], 'settings/update', [StaffSettingController::class, 'update'])->name('settings.update');
+
+    // Products, Sales, Customers, etc.
     Route::resource('products', ProductsController::class);
-    Route::resource('settings', SettingsController::class);
-    Route::resource('invoicescategory', InvoiceCategoryController::class);
-    Route::get('sales/{sale}/invoice', [SalesController::class, 'invoice'])->name('sales.invoice');
+    Route::resource('customers', CustomersController::class);
+    Route::resource('sales', SalesController::class);
     Route::resource('salesitems', SalesItemController::class);
+    Route::post('logout', [StaffController::class, 'logout'])->name('logout');
+    
 });

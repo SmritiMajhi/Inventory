@@ -3,13 +3,21 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 
 class StaffController extends Controller
 {
-     public function index()
+    /**
+     * Show staff dashboard by delegating to DashboardController
+     */
+    public function dashboard()
     {
-        return view('staff.dashboard'); // create this Blade
+        return app(DashboardController::class)->index();
     }
+
+    public function logout()
+{
+    session()->flush();
+    return redirect()->route('staff.login');
+}
+
 }

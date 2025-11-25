@@ -13,7 +13,10 @@
     <a href="{{route('staff.products.index')}}" class="nav-link"><i class="bi bi-box-seam"></i> <span>Products</span></a>
     <a href="{{ route('staff.salesitems.index') }}" class="nav-link"><i class="bi bi-receipt"></i><span>Sales Items</span></a>
     <a href="{{route('staff.customers.index')}}" class="nav-link"><i class="bi bi-people"></i> <span>Customers</span></a>
-    <a href="{{route('staff.settings.index')}}" class="nav-link"><i class="bi bi-gear"></i> <span>Settings</span></a>
-    <a href="{{ route('logout') }}" class="nav-link text-danger"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+    <a href="{{route('staff.settings.edit')}}" class="nav-link"><i class="bi bi-gear"></i> <span>Settings</span></a>
+    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+    @csrf
+    <button type="submit" class="btn btn-link align-baseline nav-link"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></button>
+  </form>
   </nav>
 </div>
