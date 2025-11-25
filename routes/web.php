@@ -13,7 +13,6 @@ use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Staff\SettingController as StaffSettingController;
 
 use App\Http\Controllers\Admin\CategoryController;
-
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ProductController;
@@ -21,7 +20,7 @@ use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\SaleItemController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Admin\SettingController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -41,12 +40,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ------------------- Admin Routes -------------------
-// Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-//     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
 Route::prefix('admin')
     ->middleware('auth') // optionally add role check
     ->name('admin.')      // THIS is what prefixes route names with admin.
@@ -67,10 +60,32 @@ Route::resource('sales', SaleController::class);
 Route::resource('sale-items', SaleItemController::class);
     Route::resource('stocks', StockController::class);
 
-Route::resource('settings', SettingController::class);
+
+// Admin Settings
+
+Route::get('/settings', [SettingController::class, 'index'])
+     ->name('settings.index');
+
+Route::post('/settings/update', [SettingController::class, 'update'])
+     ->name('settings.update');
+
+
 });
 
-// Staff routes (session-based login)
+// ------------------- Cashier Routes -------------------
+// Route::prefix('staff')->middleware(['auth', 'role:staff'])->group(function () {
+//     Route::get('dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+
+// Route::middleware(['auth', 'role:staff'])->group(function () {
+    Route::middleware('auth')->group(function () {
+
+    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+
+
+
+    // Optionally, cashier can have access to sales only:
+    // Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
+});
 Route::prefix('staff')->name('staff.')->group(function () {
 
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -90,3 +105,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
     Route::post('logout', [StaffController::class, 'logout'])->name('logout');
     
 });
+
+
+
+
