@@ -84,6 +84,12 @@
 </head>
 <body>
 
+  @php
+use App\Models\Setting;
+$setting = Setting::first();
+@endphp
+
+
   <div class="sidebar d-flex flex-column flex-shrink-0 p-3" id="sidebar">
     <!-- Header -->
     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -162,32 +168,68 @@
       <i class="bi bi-box-arrow-right me-1"></i> Logout
     </a> --}}
 
-   <form action="{{ route('logout') }}" method="POST">
+   {{-- <form action="{{ route('logout') }}" method="POST">
     @csrf
-    <button type="submit" class="btn btn-danger w-100">
+    <button type="submit" class="btn btn-primary w-100">
         <i class="bi bi-box-arrow-right me-1"></i> Logout
     </button>
 </form>
 
 
-
+ --}}
 
   </div>
 
-  <!-- Main Content -->
-  <div class="content" id="mainContent">
-    <div class="topbar">
-      <div>
-        <span class="text-muted me-2">👤 {{ Auth::user()->name ?? 'Admin' }}</span>
-      </div>
+ <!-- Main Content -->
+<div class="content" id="mainContent">
+
+    <!-- Topbar -->
+
+   
+
+    <div class="topbar d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">Admin Dashboard</h5>
+
+
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" 
+               id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+
+                <!-- Admin Logo -->
+                <img src="{{ asset('uploads/settings/' . ($setting->logo ?? 'default.png')) }}" 
+                     onerror="this.src='https://via.placeholder.com/40'" 
+                     class="rounded-circle me-2" width="40" height="40" alt="Admin Logo">
+
+                <span class="text-muted fw-semibold">{{ Auth::user()->name ?? 'Admin' }}</span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                <li>
+                    <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
+                        <i class="bi bi-gear me-2"></i> Settings
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="dropdown-item text-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 
+    <!-- Page Content -->
     <div class="mt-4">
-      @yield('content')
+        @yield('content')
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const toggleBtn = document.getElementById('toggleSidebar');
     const sidebar = document.getElementById('sidebar');

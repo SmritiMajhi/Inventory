@@ -13,7 +13,6 @@ use App\Http\Controllers\Staff\InvoiceCategoryController;
 
 
 use App\Http\Controllers\Admin\CategoryController;
-
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ProductController;
@@ -21,7 +20,7 @@ use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\SaleItemController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Admin\SettingController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -41,12 +40,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ------------------- Admin Routes -------------------
-// Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-//     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
 Route::prefix('admin')
     ->middleware('auth') // optionally add role check
     ->name('admin.')      // THIS is what prefixes route names with admin.
@@ -67,7 +60,16 @@ Route::resource('sales', SaleController::class);
 Route::resource('sale-items', SaleItemController::class);
     Route::resource('stocks', StockController::class);
 
-Route::resource('settings', SettingController::class);
+
+// Admin Settings
+
+Route::get('/settings', [SettingController::class, 'index'])
+     ->name('settings.index');
+
+Route::post('/settings/update', [SettingController::class, 'update'])
+     ->name('settings.update');
+
+
 });
 
 // ------------------- Cashier Routes -------------------
@@ -94,3 +96,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
     Route::get('sales/{sale}/invoice', [SalesController::class, 'invoice'])->name('sales.invoice');
     Route::resource('salesitems', SalesItemController::class);
 });
+
+
+
+
